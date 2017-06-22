@@ -1,6 +1,7 @@
 package edu.cs.ai.log4KR.math.types;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class Fraction implements Comparable<Fraction>{
 	
@@ -173,6 +174,20 @@ public class Fraction implements Comparable<Fraction>{
 		return a;
 	}
 	
+	private static BigInteger gcd(BigInteger a, BigInteger b) {
+
+		if (a.signum() == -1 || b.signum() == -1) {
+			throw new ArithmeticException("GCD not defined for negative parameters");
+		}
+
+		while (b.compareTo(BigInteger.ZERO) != 0) {
+			BigInteger h = a.mod(b);
+			a = b;
+			b = h;
+		}
+
+		return a;
+	}
 	/**
 	 * Calculates the least common multiple.
 	 * @param a
@@ -180,6 +195,13 @@ public class Fraction implements Comparable<Fraction>{
 	 * @return
 	 */
 	public static long lcm(long a, long b){
+		if(a > 3037000500l|| b>3037000500l){
+			BigInteger aBig = new BigInteger(Long.toString(a));
+			BigInteger bBig = new BigInteger(Long.toString(b));
+			
+			return aBig.multiply(bBig).divide(gcd(aBig,bBig)).longValue();
+		}
+		
 		long lcm = a * b / Fraction.gcd(a, b);
 		return lcm;
 	}
