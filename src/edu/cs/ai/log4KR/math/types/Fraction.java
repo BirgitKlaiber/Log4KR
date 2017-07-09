@@ -195,7 +195,7 @@ public class Fraction implements Comparable<Fraction>{
 	 * @return
 	 */
 	public static long lcm(long a, long b){
-		if(a > 3037000500l|| b>3037000500l){
+		if(a > 3037000500l|| b>3037000500l){// sqrt of Long.MAX_VALUE = 3037000500l hotfix, still not generally correct
 			BigInteger aBig = new BigInteger(Long.toString(a));
 			BigInteger bBig = new BigInteger(Long.toString(b));
 			
