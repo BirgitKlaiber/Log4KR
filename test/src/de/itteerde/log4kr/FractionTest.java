@@ -12,7 +12,7 @@ public class FractionTest {
 	public void testConstructorDouble(){
 		double p = 3.9682291970525344E-9d;
 		Fraction f = new Fraction(p).simplify();//overrun
-		System.out.println(f);
+		assertEquals(p, f.toFloatingPoint(),0.00000001);
 	}
 	
 	@Test
